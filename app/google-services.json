@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "91675835928",
+    "firebase_url": "https://xerada-dfcef.firebaseio.com",
+    "project_id": "xerada-dfcef",
+    "storage_bucket": "xerada-dfcef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91675835928:android:b3a0cc9f0ad5ae73",
+        "android_client_info": {
+          "package_name": "io.github.xerada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91675835928-pprc5728rra13hrgbqqhvuuchap047jp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.xerada",
+            "certificate_hash": "ba017d99432a3c7cd5df86fae8b675d4c67f27e2"
+          }
+        },
+        {
+          "client_id": "91675835928-oh5qfg0d1q0d1e8bnfvp7s10rqdfk5p2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtrtqwW7rYnQQYNs3JnfTtzv8zpx3zpxU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91675835928-oh5qfg0d1q0d1e8bnfvp7s10rqdfk5p2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
