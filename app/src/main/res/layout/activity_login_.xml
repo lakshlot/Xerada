@@ -24,13 +24,13 @@
         android:textSize="12sp"
         android:textColorLink="?attr/colorPrimary"
         android:textColorHighlight="@color/colorPrimary"
-        android:padding="16dp"
-        android:layout_height="50dp" />
+        android:padding="6dp"
+        android:layout_height="30dp" />
 
     <EditText
         android:background="@drawable/my_button_bg"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:inputType="textPassword"
         android:ems="10"
         android:layout_marginTop="16dp"
@@ -41,12 +41,12 @@
         android:hint="Enter Password"
         android:fontFamily="sans-serif"
         android:textSize="12sp"
-        android:padding="16dp"/>
+        android:padding="6dp"/>
 
     <Button
         android:text="Sign In"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/passinput"
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp"
@@ -55,7 +55,7 @@
         android:layout_alignParentEnd="true"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:background="@drawable/my_colored_bordered_button"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/mysignaturecolor"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold"
         android:textSize="18sp" />
@@ -67,7 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginbutton"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textSize="13sp"/>
 
     <TextView
         android:text="Sign Up"
@@ -76,7 +77,8 @@
         android:layout_below="@+id/loginbutton"
         android:layout_toEndOf="@+id/textView2"
         android:id="@+id/regtextview"
-        android:textColor="@color/colorlink" />
+        android:textColor="@color/colorlink"
+        android:textSize="13sp"/>
 
     <TextView
         android:text="Forgot Password ?"
@@ -85,16 +87,9 @@
         android:layout_alignBottom="@+id/regtextview"
         android:layout_alignParentEnd="true"
         android:id="@+id/forgotpass"
+        android:textSize="13sp"
         android:textColor="@color/colorlink" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
     <View
         android:id="@+id/marginline"
         android:layout_width="150dp"
@@ -125,5 +120,25 @@
         android:tint="@color/black"
         android:layout_alignParentTop="true"
         />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/google_button"
+        android:src="@drawable/ic_google_plus"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/marginline" />
+
+    <ImageButton
+        android:id="@+id/fb_button"
+        android:src="@drawable/ic_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/regtextview" />
+
 
 </RelativeLayout>
