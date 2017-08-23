@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.xerada.Activities.Login_Activity;
 import io.github.xerada.SectionPageAdapters.SectionsPageAdapter;
@@ -28,6 +32,7 @@ import io.github.xerada.SectionPageAdapters.SectionsPageAdapter;
 public class Home_Activity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth firebaseAuth;
     private String TAG= "ActivityLog";
     private  FirebaseAuth mAuth;
     private Toolbar toolbar;
@@ -38,6 +43,8 @@ public class Home_Activity extends AppCompatActivity {
     private DatabaseReference mUserDatabase;
     private CircleImageView main_dp;
 
+    public static final int RC_SIGN_IN = 1;
+
 
 
     @Override
@@ -47,26 +54,6 @@ public class Home_Activity extends AppCompatActivity {
 
 
 
-
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mUser = firebaseAuth.getCurrentUser();
-                if (mUser == null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + mUser.getUid());
-                    Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-
-            }
-        };
         toolbar=(Toolbar)findViewById(R.id.main_page_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
@@ -86,6 +73,23 @@ public class Home_Activity extends AppCompatActivity {
 
             }
         });
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        if(user != null){
+
+        }else {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setIsSmartLockEnabled(false)
+                            .setProviders(
+                                    Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                            new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                            .build(),
+                    RC_SIGN_IN);
+        }
 
 
         viewPager=(ViewPager)findViewById(R.id.tab_pager);
@@ -122,9 +126,20 @@ public class Home_Activity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth = FirebaseAuth.getInstance();
         mAuth.addAuthStateListener(mAuthListener);
 
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Sign-In Canceled", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 }
